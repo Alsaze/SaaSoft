@@ -21,4 +21,7 @@ export default defineNuxtConfig({
     detectBrowserLanguage: false,
   },
   ssr: false,
+  app: {
+    baseURL: '/SaaSoft',
+  },
 })
