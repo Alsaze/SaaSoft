@@ -55,13 +55,7 @@
 </template>
 
 <script setup lang="ts">
-export interface Account {
-  tags?: string
-  type?: 'local' | 'ldap' | ''
-  login?: string
-  password?: string | null
-  uid: string
-}
+import type { Account } from '@/stores/useAccountStore'
 
 const props = withDefaults(defineProps<Account>(), {
   tags: '',
@@ -70,15 +64,12 @@ const props = withDefaults(defineProps<Account>(), {
   password: null,
 })
 
-const emit = defineEmits<{
-  update: [account: Account]
-  delete: [account: Account]
-}>()
-
 const ACCOUNT_TYPES = [
   { label: 'Локальный', value: 'local' },
   { label: 'LDAP', value: 'ldap' },
-] as const
+]
+
+const { updateAccount, removeAccount } = useAccountStore()
 
 const tags = ref(props.tags)
 const type = ref(props.type)
@@ -90,7 +81,7 @@ const formatTags = (tags: string) =>
   tags.split('; ').map(tag => ({ text: tag }))
 
 watch([tags, type, login, password], ([newTags, newType, newLogin, newPassword]) => {
-  emit('update', {
+  updateAccount({
     uid: props.uid,
     tags: formatTags(newTags),
     type: newType,
@@ -100,7 +91,7 @@ watch([tags, type, login, password], ([newTags, newType, newLogin, newPassword])
 }, { deep: true })
 
 function deleteAccount() {
-  emit('delete', {
+  removeAccount({
     uid: props?.uid,
     tags: tags?.value,
     type: type?.value,

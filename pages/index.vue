@@ -9,8 +9,6 @@
       v-for="account in accounts"
       :key="account?.uid"
       v-bind="account"
-      @update="updateAccount"
-      @delete="removeAccount"
     />
 
     <div v-if="accounts?.length > 0">
@@ -23,33 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import type { Account } from '@/components/AccountRow.vue'
+import { useAccountStore } from '~/stores/useAccountStore'
 
-const accounts = ref<Account[]>([])
-
-function addAccount() {
-  accounts.value.push({
-    uid: `${Math.random().toString(16).slice(2)}`,
-    tags: '',
-    type: '',
-    login: '',
-    password: null,
-  })
-}
-
-function updateAccount(updatedAccount: Account) {
-  const index = accounts.value.findIndex(account => account.uid === updatedAccount.uid)
-  if (index !== -1) {
-    accounts.value[index] = updatedAccount
-  }
-}
-
-function removeAccount(updatedAccount: Account) {
-  const index = accounts.value.findIndex(account => account.uid === updatedAccount.uid)
-  if (index !== -1) {
-    accounts.value.splice(index, 1)
-  }
-}
+const { accounts, addAccount } = useAccountStore()
 </script>
 
 <style lang="scss">

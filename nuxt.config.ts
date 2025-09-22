@@ -2,7 +2,14 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@nuxt/image', '@nuxt/icon', '@nuxt/fonts', '@nuxtjs/i18n'],
+  modules: [
+    '@nuxt/ui',
+    '@nuxt/image',
+    '@nuxt/icon',
+    '@nuxt/fonts',
+    '@nuxtjs/i18n',
+    '@pinia/nuxt',
+  ],
   css: ['~/assets/css/main.css', '~/assets/scss/main.scss'],
   i18n: {
     locales: [
@@ -13,4 +20,5 @@ export default defineNuxtConfig({
     strategy: 'prefix_except_default',
     detectBrowserLanguage: false,
   },
+  ssr: false,
 })
