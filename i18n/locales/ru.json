@@ -1,0 +1,12 @@
+{
+  "colors": {
+    "black": "черный",
+    "beige": "бежевый",
+    "grey": "серый",
+    "grey-black": "серо-черный"
+  },
+  "materials": {
+    "cotton": "хлопок",
+    "cotton-polyester": "хлопок-полиэстер"
+  }
+}

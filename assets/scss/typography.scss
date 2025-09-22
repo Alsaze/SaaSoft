@@ -1,0 +1,121 @@
+@use 'utils' as *;
+
+// Font Face Declarations
+@font-face {
+  font-family: 'Inter';
+  src:
+    url('/fonts/Inter-Regular.woff2') format('woff2'),
+    url('/fonts/Inter-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src:
+    url('/fonts/Inter-Medium.woff2') format('woff2'),
+    url('/fonts/Inter-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src:
+    url('/fonts/Inter-SemiBold.woff2') format('woff2'),
+    url('/fonts/Inter-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Font Variables
+$font-family-base:
+  'Inter',
+  -apple-system,
+  BlinkMacSystemFont,
+  'Segoe UI',
+  Roboto,
+  sans-serif;
+
+// Font Weights
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+
+// Custom type
+@mixin font($size, $weight, $lineHeight, $namespace: null, $onlyVars: false) {
+  @if ($namespace) {
+    @if ($onlyVars) {
+      --#{$namespace}-font-size: #{$size};
+      --#{$namespace}-font-weight: #{$weight};
+      --#{$namespace}-line-height: #{$lineHeight};
+    } @else {
+      font-size: var(--#{$namespace}-font-size, $size);
+      font-weight: var(--#{$namespace}-font-weight, $weight);
+      line-height: var(--#{$namespace}-line-height, $lineHeight);
+    }
+  } @else {
+    font-size: $size;
+    font-weight: $weight;
+    line-height: $lineHeight;
+  }
+}
+
+/* Headline */
+@mixin h1($namespace: null, $onlyVars: false) {
+  @include font(32px, $font-weight-semibold, 100%, $namespace, $onlyVars);
+  @include mobile {
+    font-size: 24px;
+  }
+}
+@mixin h2($namespace: null, $onlyVars: false) {
+  @include font(24px, $font-weight-semibold, 100%, $namespace, $onlyVars);
+  @include mobile {
+    font-size: 20px;
+  }
+}
+@mixin h3($namespace: null, $onlyVars: false) {
+  @include font(16px, $font-weight-semibold, 140%, $namespace, $onlyVars);
+}
+
+/* Text */
+// 16 medium-(medium/bold)
+@mixin txt-m($namespace: null, $onlyVars: false) {
+  @include font(16px, $font-weight-regular, 100%, $namespace, $onlyVars);
+}
+@mixin txt-m-m($namespace: null, $onlyVars: false) {
+  @include font(16px, $font-weight-medium, 100%, $namespace, $onlyVars);
+}
+@mixin txt-m-b($namespace: null, $onlyVars: false) {
+  @include font(16px, $font-weight-semibold, 100%, $namespace, $onlyVars);
+}
+
+// 14 regular-(medium/bold)
+@mixin txt-r($namespace: null, $onlyVars: false) {
+  @include font(14px, $font-weight-regular, 20px, $namespace, $onlyVars);
+}
+@mixin txt-r-m($namespace: null, $onlyVars: false) {
+  @include font(14px, $font-weight-medium, 20px, $namespace, $onlyVars);
+}
+@mixin txt-r-b($namespace: null, $onlyVars: false) {
+  @include font(14px, $font-weight-semibold, 20px, $namespace, $onlyVars);
+}
+
+// 12 text small-(medium/bold)
+@mixin txt-s($namespace: null, $onlyVars: false) {
+  @include font(12px, $font-weight-regular, 18px, $namespace, $onlyVars);
+}
+@mixin txt-s-m($namespace: null, $onlyVars: false) {
+  @include font(12px, $font-weight-medium, 18px, $namespace, $onlyVars);
+}
+@mixin txt-s-b($namespace: null, $onlyVars: false) {
+  @include font(12px, $font-weight-semibold, 18px, $namespace, $onlyVars);
+}
+
+// 10 text-tiny
+@mixin txt-t($namespace: null, $onlyVars: false) {
+  @include font(10px, $font-weight-medium, 15px, $namespace, $onlyVars);
+}
