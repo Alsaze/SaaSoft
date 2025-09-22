@@ -21,6 +21,9 @@ export default defineNuxtConfig({
     detectBrowserLanguage: false,
   },
   ssr: false,
+  nitro: {
+    preset: 'github-pages',
+  },
   app: {
     baseURL: '/SaaSoft',
   },

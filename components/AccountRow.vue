@@ -49,13 +49,13 @@
     <UButton
       icon="i-lucide-trash"
       size="xl"
-      @click="deleteAccount"
+      @click="deleteAccount()"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Account } from '@/stores/useAccountStore'
+import type { Account } from '~/stores/useAccountStore'
 
 const props = withDefaults(defineProps<Account>(), {
   tags: '',

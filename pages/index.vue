@@ -21,9 +21,12 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { useAccountStore } from '~/stores/useAccountStore'
 
-const { accounts, addAccount } = useAccountStore()
+const accountStore = useAccountStore()
+const { accounts } = storeToRefs(accountStore)
+const { addAccount } = accountStore
 </script>
 
 <style lang="scss">
